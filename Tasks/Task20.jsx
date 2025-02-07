@@ -1,19 +1,22 @@
 import { Button, View } from "react-native";
-import { MyClassPage19 } from "../Components/MyClassPage19";
+import { MyClassPage20 } from "../Components/MyClassPage20";
 import { useState } from "react";
 
-export function Task19() {
+export function Task20() {
     const [showComponent, setShowComponent] = useState(false);
+
     return (
         <View>
             <Button
                 title="Show"
                 onPress={onPress}
             />
-            {showComponent && <MyClassPage19 />}
+            {showComponent && <MyClassPage20/>}
         </View>
     );
     function onPress() {
         setShowComponent(!showComponent);
     }
+
+
 }
