@@ -32,6 +32,7 @@ export default function Task28() {
         require("../Resources/Task28/(22).jpg"),
     ]);
     const xIcon = require("../Resources/Task28/x.png");
+    const rIcon = require("../Resources/Task28/r.png");
 
     const imageObjects = images.map((source, index) => ({
         id: index + 1,
@@ -40,8 +41,17 @@ export default function Task28() {
     function handleRemoveImage(id) {
         setImages(prevImages => prevImages.filter((_, index) => index !== id - 1));
     }
-    
 
+    function handleDuplicateImage(id) {
+        setImages(prevImages => insertAfter(prevImages,id));
+    }
+    function insertAfter(prevImages, id) {
+
+        const newImages = [...prevImages];
+        newImages.splice(id, 0, newImages[id - 1]);
+        return newImages;
+
+    }
 
     function handleImagePress(id) {
         Alert.alert("Image Index:" + id);
@@ -65,6 +75,20 @@ export default function Task28() {
                     >
                         <Image
                             source={xIcon}
+                            style={{ width: 50, height: 50 }}
+                        />
+                    </Pressable>
+                    <Pressable
+                        style={{
+                            position: "absolute",
+                            top: 5,
+                            left: 5,
+                            zIndex: 10,
+                        }}
+                        onPress={() => handleDuplicateImage(item.id)}
+                    >
+                        <Image
+                            source={rIcon}
                             style={{ width: 50, height: 50 }}
                         />
                     </Pressable>
@@ -115,7 +139,7 @@ export default function Task28() {
                         <TextInput
                             style={{ fontSize: 12, color: "black" }}
                             placeholderTextColor={"gray"}
-                            placeholder="Enter Index"
+                            placeholder={`Enter Index between 1 and ${images.length}`}
                             onEndEditing={event => indexInput(event.nativeEvent.text)}
                             inputMode="numeric"
                             autoFocus={true}
