@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Dimensions, FlatList, Image, Pressable, Alert, View, Button, Modal, Text, TextInput, StyleSheet } from "react-native";
 
 const { width, height } = Dimensions.get("window");
@@ -7,7 +7,7 @@ export default function Task28() {
 
     const [modalVisible, setModalVisible] = useState(false);
     const flatListRef = useRef(null);
-    const images = [
+    const [images, setImages] = useState([
         require("../Resources/Task28/(1).jpg"),
         require("../Resources/Task28/(2).jpg"),
         require("../Resources/Task28/(3).jpg"),
@@ -30,13 +30,17 @@ export default function Task28() {
         require("../Resources/Task28/(20).jpg"),
         require("../Resources/Task28/(21).jpg"),
         require("../Resources/Task28/(22).jpg"),
-    ];
+    ]);
+    const xIcon = require("../Resources/Task28/x.png");
 
     const imageObjects = images.map((source, index) => ({
         id: index + 1,
         source,
     }));
-
+    function handleRemoveImage(id) {
+        setImages(prevImages => prevImages.filter((_, index) => index !== id - 1));
+    }
+    
 
 
     function handleImagePress(id) {
@@ -48,18 +52,38 @@ export default function Task28() {
     }
     function renderImageItem({ item }) {
         return (
-            <Pressable onPress={() => handleImagePress(item.id)}>
-                <Image
-                    source={item.source}
-                    style={{ width: width, height: height, resizeMode: "contain" }}
-                />
-            </Pressable>
+            <View style={{ alignItems: "center" }}>
+                <View style={{ position: "relative" }}>
+                    <Pressable
+                        style={{
+                            position: "absolute",
+                            top: 5,
+                            right: 5,
+                            zIndex: 10,
+                        }}
+                        onPress={() => handleRemoveImage(item.id)}
+                    >
+                        <Image
+                            source={xIcon}
+                            style={{ width: 50, height: 50 }}
+                        />
+                    </Pressable>
+                    <Pressable onPress={() => handleImagePress(item.id)}>
+
+                        <Image
+                            source={item.source}
+                            style={{ width: width, height: height * 0.5, resizeMode: "contain" }}
+                        />
+                    </Pressable>
+
+                </View>
+            </View>
         );
     }
     function indexInput(index) {
         setModalVisible(false);
         if (isValidIndex(index)) {
-            scrollToIndex(index - 1);
+            scrollToIndex(index);
         }
         else {
             Alert.alert("Invalid Index");
@@ -72,22 +96,19 @@ export default function Task28() {
     }
     function scrollToIndex(index) {
         if (flatListRef.current) {
-            flatListRef.current.scrollToIndex({ index: index - 1 , animated: true });
+            flatListRef.current.scrollToIndex({ index: index - 1, animated: true });
         }
     }
 
 
     return (
         <View>
-            <Button
-                title="Enter Index"
-                onPress={onPress}
-            />
             <Modal
                 visible={modalVisible}
                 animationType="slide"
                 transparent={true}
                 onRequestClose={() => setModalVisible(false)}
+                zIndex={1000}
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
@@ -115,6 +136,10 @@ export default function Task28() {
                         index,
                     })
                 }
+            />
+            <Button
+                title="Enter Index"
+                onPress={onPress}
             />
         </View>
     );
