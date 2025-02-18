@@ -16,12 +16,12 @@ import Task32 from "./Tasks/Task32";
 import Task33 from "./Tasks/Task33";
 import Task34 from "./Tasks/Task34";
 import Task35 from "./Tasks/Task35";
-import Task36 from "./Tasks/Task36";
+import Task36 from "./Tasks/Task36 + 37";
 
 export default function App() {
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <ScrollView contentContainerStyle={{ justifyContent: "center", alignItems: "center", flexGrow: 1 }} >
+            <View style={{ justifyContent: "center", alignItems: "center", flexGrow: 1 }} >
 
                 {/* <Task16/> */}
                 {/* <Task17/> */}
@@ -42,7 +42,7 @@ export default function App() {
                 {/* <Task35/> */}
                 <Task36/>
 
-            </ScrollView>
+            </View>
 
         </SafeAreaView>
     );

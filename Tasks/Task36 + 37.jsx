@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
-import { ScrollView, Text } from "react-native";
+import { RefreshControl, SafeAreaView, ScrollView, Text, View } from "react-native";
 
 export default function Task36() {
-
+    const [refreshing, setRefreshing] = useState(false);
     const [arrayOfText, setArrayOfText] = useState([]);
 
     useEffect(() => {
         generateText();
     }, []);
 
+    function onRefresh() {
+        setRefreshing(true);
+        generateText();
+
+    }
+
+
     function generateText() {
         const newTextArray = [];
         for (let i = 1; i <= 100; i++) {
-            newTextArray.push(<Text key={i}>{i}</Text>);
+            newTextArray.push(<Text key={i}>{i + ". "}{generateRandomWord(i)}</Text>);
         }
         setArrayOfText(newTextArray);
+        setRefreshing(false);
     }
     function generateRandomWord(length) {
         let result = '';
@@ -25,9 +33,19 @@ export default function Task36() {
         return result;
     }
     return (
-        <ScrollView style={{ flex: 1, fontSize: 40, backgroundColor: "white", padding: 10 }}>
+        <ScrollView
+            contentContainerStyle={{ fontSize: 40, backgroundColor: "white" }}
+            refreshControl={
+                <RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                />
+            }
+        >
             {arrayOfText}
+
         </ScrollView>
+
     )
 
 }
