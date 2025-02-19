@@ -18,6 +18,7 @@ import Task34 from "./Tasks/Task34";
 import Task35 from "./Tasks/Task35";
 import Task36 from "./Tasks/Task36 + 37";
 import Task38 from "./Tasks/Task38";
+import Task39 from "./Tasks/Task39";
 
 export default function App() {
     return (
@@ -42,8 +43,9 @@ export default function App() {
                 {/* <Task34/> */}
                 {/* <Task35/> */}
                 {/* <Task36/> */}
-                <Task38/>
-
+                {/* <Task38/> */}
+                <Task39/>
+                
             </View>
 
         </SafeAreaView>
