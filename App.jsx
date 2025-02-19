@@ -20,7 +20,7 @@ import Task36 from "./Tasks/Task36 + 37";
 import Task38 from "./Tasks/Task38";
 import Task39 from "./Tasks/Task39";
 import Task40 from "./Tasks/Task40";
-import Task41 from "./Tasks/Task41";
+import Task41 from "./Tasks/Task41 + 42";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {

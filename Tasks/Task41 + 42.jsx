@@ -12,14 +12,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 
-const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        paddingBottom: 20,
-    },
-});
 export default function Task41() {
 
     return (
@@ -29,10 +21,10 @@ export default function Task41() {
                 initialRouteName="First"
             >
 
-                <Tab.Screen name="First" component={First} options={styles.screen} />
-                <Tab.Screen name="Second" component={Second} options={styles.screen} />
-                <Tab.Screen name="Third" component={Third} options={styles.screen} />
-                <Tab.Screen name="Fourth" component={Fourth} options={styles.screen} />
+                <Tab.Screen name="First" component={First} />
+                <Tab.Screen name="Second" component={Second} />
+                <Tab.Screen name="Third" component={Third} />
+                <Tab.Screen name="Fourth" component={Fourth} />
 
             </Tab.Navigator>
         </NavigationContainer>
