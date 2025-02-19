@@ -20,11 +20,17 @@ import Task36 from "./Tasks/Task36 + 37";
 import Task38 from "./Tasks/Task38";
 import Task39 from "./Tasks/Task39";
 import Task40 from "./Tasks/Task40";
+import Task41 from "./Tasks/Task41";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ justifyContent: "center", alignItems: "center", flexGrow: 1 }} >
+        <SafeAreaProvider style={{ flex: 1 }}>
+            <ScrollView
+                contentContainerStyle={{ flexGrow: 1 }}
+                style={{ alignContent: "center", }}
+                nestedScrollEnabled={true}
+            >
 
                 {/* <Task16/> */}
                 {/* <Task17/> */}
@@ -46,11 +52,10 @@ export default function App() {
                 {/* <Task36/> */}
                 {/* <Task38/> */}
                 {/* <Task39/> */}
-                <Task40/>
+                {/* <Task40/> */}
+                <Task41/>
 
-
-            </View>
-
-        </SafeAreaView>
+            </ScrollView>
+        </SafeAreaProvider>
     );
 }

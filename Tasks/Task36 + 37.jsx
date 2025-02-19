@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RefreshControl, SafeAreaView, ScrollView, Text, View } from "react-native";
+import { Dimensions, RefreshControl, SafeAreaView, ScrollView, Text, View } from "react-native";
 
 export default function Task36() {
     const [refreshing, setRefreshing] = useState(false);
@@ -33,8 +33,22 @@ export default function Task36() {
         return result;
     }
     return (
+        <View
+        style={{
+                alignItems: "center",
+                alignContent: "center",
+                justifyContent: "center",
+                alignSelf: "auto",
+                margin: 20,
+            }}
+        >
         <ScrollView
             contentContainerStyle={{ fontSize: 40, backgroundColor: "white" }}
+            style={{
+                alignSelf: 'center',
+                width: Dimensions.get('window').width - 40,
+                height: Dimensions.get('window').height - 40,
+            }}
             refreshControl={
                 <RefreshControl
                     refreshing={refreshing}
@@ -45,6 +59,7 @@ export default function Task36() {
             {arrayOfText}
 
         </ScrollView>
+        </View>
 
     )
 
